@@ -1,0 +1,21 @@
+United States Supreme Court;U.S.;false
+First Circuit;1st Cir.;false
+Second Circuit;2d Cir.;false
+Third Circuit;3d Cir.;false
+Fourth Circuit;4th Cir.;false
+Fifth Circuit;5th Cir.;false
+Sixth Circuit;6th Cir.;false
+Seventh Circuit;7th Cir.;false
+Eighth Circuit;8th Cir.;false
+Ninth Circuit;9th Cir.;false
+Tenth Circuit;10th Cir.;false
+Eleventh Circuit;11th Cir.;false
+D.C. Circuit;D.C. Cir.;false
+Federal Circuit;Fed. Cir.;false
+Michigan Court of Appeals;Mich. Ct. App.;true
+Court of Appeals of Washington;Wash. Ct. App.;true
+Appellate Court of Connecticut;Conn. App. Ct.;true
+Supreme Court of New Hampshire;N.H.;true
+Supreme Court of Kentucky;Ky.;true
+Court of Appeals of New York;N.Y.;true
+Commonwealth Court of Pennsylvania;Pa. Commw. Ct.;true

@@ -1,0 +1,7 @@
+# Full Name; Abbreviation; Is State Reporter; Is Court-Specific Reporter
+North Western Reporter, second series;N.W.2d;False;False
+Pacific Reporter, second series;P.2d;False;False
+Atlantic Reporter, second series;A.2d;False;False
+Atlantic Reporter, third series;A.3d;False;False
+South Western Reporter, second series;S.W.2d;False;False
+North Eastern Reporter, third series;N.E.3d;False;False
