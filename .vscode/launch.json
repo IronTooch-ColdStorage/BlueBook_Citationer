@@ -5,11 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
+            "name": "Python: GUI Version",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/GUI/mainPage.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: Text Version",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/bb_cite.py",
-            
             //"program": "${file}",
             "console": "integratedTerminal"
         }

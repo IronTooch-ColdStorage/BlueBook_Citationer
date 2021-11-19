@@ -1,10 +1,20 @@
 
 import time
+import os
+import sys
+import inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+classesdir = parentdir + "\\Classes"
+
+sys.path.insert(0, str(classesdir))
+
 import Constants
 from distutils import util
 
-from Classes.HelperFunctions import getDate
+from HelperFunctions import HelperFunctions
 
+Constant = Constants.Constants()
 
 class Case:
 
@@ -19,18 +29,24 @@ class Case:
 
     strCaseLocation = "MyReporterLocation"
 
-    dateDecidedDate = "January 1, 1900"
+    strDateDecidedDate = "January 1, 1900"
 
     intBeginningPage = 1
     intFirstPinLocation = 2
 
     strDocketNumber = "MyDocket1"
+    strPinLocation = ""
 
+    
 
 
     def getDecidedYear(self) -> str:
 
-        dtDecidedDate = getDate(self.dateDecidedDate)
+        self.strDateDecidedDate = str(self.strDateDecidedDate).strip()
+        try: 
+            dtDecidedDate = HelperFunctions.getDate(self.strDateDecidedDate)
+        except ValueError:
+                return "INVALID DATE"
         #print(dtDecidedDate.tm_year)
         return str(dtDecidedDate.tm_year)
 
@@ -48,7 +64,7 @@ def getReporterCite(strFullLocationFound: str) -> str:
     strAbbreviatedVolumeName = "-1"
     strAbbreviatedVolumeEdition = "-1"
 
-    print( str(intVolumeNumber) + " " + strAbbreviatedVolumeName + strAbbreviatedVolumeEdition + " " + str(intBeginningLocation))
+    #print( str(intVolumeNumber) + " " + strAbbreviatedVolumeName + strAbbreviatedVolumeEdition + " " + str(intBeginningLocation))
     
 def getPartyName(strPartyFullName: str, bolIsBusiness: bool) -> str:
     
@@ -60,13 +76,15 @@ def getPartyName(strPartyFullName: str, bolIsBusiness: bool) -> str:
 
 def getPartyLastName(strPartyName: str) -> str:
 
+    if (strPartyName == ""):
+        return ""
     strPartyName = removeSuffixes(strPartyName)
     string_tokens = str(strPartyName).split()
     return string_tokens.pop()
 
 def removeSuffixes(strParty: str) -> str:
     strParty = strParty.strip()
-    lstSuffixes = Constants.RemovableSuffixes()
+    lstSuffixes = Constant.getRemovableSuffixes()
 
     for strSuffix in lstSuffixes:
         strParty = strParty.removesuffix(strSuffix)
@@ -77,6 +95,7 @@ def removeSuffixes(strParty: str) -> str:
 
 def getVolumeNumber(strCaseLocation: str) -> str:
 
+    
     # Get string to first comma
 
     #Volume 805 of the North Western Reporter, second series, beginning on page 1
@@ -84,7 +103,10 @@ def getVolumeNumber(strCaseLocation: str) -> str:
 
 
     volumeNumber = string_tokens[0].split(" of the ")[0] #[Volume 805, North Western Reporter]
-    volumeNumber = volumeNumber.split().pop()
+    splitTokens = volumeNumber.split()
+    if len(splitTokens) == 0:
+        return "INVALID"
+    volumeNumber = splitTokens.pop()
     return volumeNumber
 
 def getBeginningPage(strCaseLocation: str) -> str:
@@ -133,7 +155,7 @@ def getCaseInput() -> Case:
     myCase.strCaseLocation = input()
 
     print("When was the case decided?")
-    myCase.dateDecidedDate = input()
+    myCase.strDateDecidedDate = input()
 
     print("Where is the pin cite to?")
     myCase.intFirstPinLocation = input()

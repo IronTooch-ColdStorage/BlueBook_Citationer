@@ -5,3 +5,9 @@ Atlantic Reporter, second series;A.2d;False;False
 Atlantic Reporter, third series;A.3d;False;False
 South Western Reporter, second series;S.W.2d;False;False
 North Eastern Reporter, third series;N.E.3d;False;False
+United States Reports;U.S.;False;True
+Supreme Court Reporter;S. Ct.;False;True
+Federal Reporter, third series;F.3d;False;False
+Federal Supplement;F. Supp.;False;False
+Federal Supplement, third series;F. Supp. 3d;False;False
+Federal Supplement, second series;F. Supp. 2d;False;False

@@ -1,4 +1,6 @@
+# Court Name, Abbreviation, Is a State Court
 United States Supreme Court;U.S.;false
+SUPREME COURT OF UNITED STATES;U.S.;false
 First Circuit;1st Cir.;false
 Second Circuit;2d Cir.;false
 Third Circuit;3d Cir.;false
@@ -19,3 +21,9 @@ Supreme Court of New Hampshire;N.H.;true
 Supreme Court of Kentucky;Ky.;true
 Court of Appeals of New York;N.Y.;true
 Commonwealth Court of Pennsylvania;Pa. Commw. Ct.;true
+UNITED STATES COURT OF APPEALS, EIGHTH CIRCUIT;8th Cir.;false
+Supreme Court of Pennsylvania;Pa.;true
+Superior Court of Pennsylvania;Pa. Super. Ct.;true
+UNITED STATES DISTRICT COURT, DISTRICT OF MASSACHUSETTS;D. Mass.;false
+UNITED STATES DISTRICT COURT FOR THE EASTERN DISTRICT OF TENNESSEE;E.D. Tenn.;false
+UNITED STATES DISTRICT COURT, SOUTHERN DISTRICT OF TEXAS;S.D. Tex.;false

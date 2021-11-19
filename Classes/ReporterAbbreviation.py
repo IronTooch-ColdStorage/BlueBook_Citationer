@@ -1,7 +1,7 @@
 
 
 
-from Classes.Abbreviation import Abbreviation
+from Abbreviation import Abbreviation
 
 
 class ReporterAbbreviation(Abbreviation):

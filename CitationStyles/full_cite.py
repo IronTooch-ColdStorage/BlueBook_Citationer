@@ -1,8 +1,7 @@
 from os import remove
 from types import new_class
 from distutils import util
-from Classes.Case import Case
-from Classes import *
+from Case import *
 import Constants
 
 
@@ -10,40 +9,41 @@ import Constants
 # Make table of courts
 # Make table of abbreviations
 # Make table of states
+Constant = Constants.Constants()
 
-
-def full_case_citation():
-    
-    myCase = Case.getCaseInput()
+def full_case_citation(myCase: Case) -> str:
 
     strCitation = ""
 
     strParties = getFullCiteParties(myCase)
-    strLocation = getLocation(myCase)
+    strLocation = getFullCiteLocation(myCase)
     strParenthetical = getParenthetical(myCase)
     
 
     strCitation = strParties + strLocation + strParenthetical
 
-    print(strCitation)
+    #print(strCitation)
+    return strCitation
     
 def getFullCiteParties(myCase: Case) -> str:
-    strFirstParty = Case.getPartyName(myCase.strFirstPartyComplete, myCase.bolFirstPartyIsBusiness)
-    strSecondParty = Case.getPartyName(myCase.strSecondPartyComplete, myCase.bolSecondPartyIsBusiness)
+    strFirstParty = getPartyName(myCase.strFirstPartyComplete, myCase.bolFirstPartyIsBusiness)
+    strSecondParty = getPartyName(myCase.strSecondPartyComplete, myCase.bolSecondPartyIsBusiness)
     strParties = strFirstParty + " v. " + strSecondParty + ", "
 
     return strParties
 
-def getLocation (myCase: Case) -> str:
+def getFullCiteLocation (myCase: Case) -> str:
     
     strLocation = ""
-    strVolumeNumber = Case.getVolumeNumber(myCase.strCaseLocation)
+    strVolumeNumber = getVolumeNumber(myCase.strCaseLocation)
 
-    strBeginningPage = Case.getBeginningPage(myCase.strCaseLocation)
+    strBeginningPage = getBeginningPage(myCase.strCaseLocation)
 
-    strVolumeAbbreviation = Constants.getReporterShortName(myCase.strCaseLocation)
+    strVolumeAbbreviation = Constant.getReporterShortName(myCase.strCaseLocation)
 
-    strLocation = strVolumeNumber + " " + strVolumeAbbreviation + " " + strBeginningPage + ", " + str(myCase.intFirstPinLocation) + " "
+    strPinLocation = myCase.strPinLocation
+
+    strLocation = strVolumeNumber + " " + strVolumeAbbreviation + " " + strBeginningPage + ", " + strPinLocation + " "
 
     return strLocation
 
@@ -73,10 +73,26 @@ def readWholeVolume(strCaseLocation: str) -> str:
 def getParenthetical(myCase: Case) -> str:
 
 
-    strShortCourtName = Constants.getCourtShortName(myCase.strCourt)
+    strShortCourtName = Constant.getCourtShortName(myCase.strCourt)
     # TODO If State Court and Reporter is state Reporter, omit state
     # TODO If State Court and Reporter has specific Jurisdiction, omit both
 
-    strDecidedYear = myCase.getDecidedYear()
 
-    return "(" + strShortCourtName + " " + strDecidedYear + ")."
+    
+
+    strDecidedYear = myCase.getDecidedYear()
+    bolIsCourtReporter = Constant.getReporterIsCourtReporter(myCase.strCaseLocation)
+
+    if bolIsCourtReporter:
+        return  "(" +  strDecidedYear + ")."
+
+    else:
+
+        return "(" + strShortCourtName + " " + strDecidedYear + ")."
+
+def citationClauseMiddle(myCase: Case) -> str:
+    strFullCite = full_case_citation(myCase)
+    strMiddleCite = strFullCite.removesuffix(".")
+    strMiddleCite = strMiddleCite + ","
+
+    return strMiddleCite
